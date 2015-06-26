@@ -1,0 +1,91 @@
+<div class="" data-ng-controller="GameController">
+    <form>
+        <div class="row" ng-show="info_name">
+            <div class="col-xs-12">
+                <div class="callout callout-danger">
+                    <h4> Name is Required, renter name and press Start Game </h4>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="name">Enter Your Name</label>
+            <input type="text"  class="form-control" data-ng-model="name" id="name" placeholder="Please Enter Your Name" required>
+        </div>
+            <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading"> Whack -a - Mole</div>
+                <table class="table table table-bordered">
+                    <tr><td><button type="button" class="btn btn-info" id="1" data-ng-click="set_by_id(1)">Whack</button></td>
+                        <td><button type="button" class="btn btn-info" id ="2" data-ng-click="set_by_id(2)">Whack</button></td>
+                        <td><button type="button" class="btn btn-info" id="3" data-ng-click="set_by_id(3)">Whack</button></td>
+                    </tr>
+                    <tr><td><button type="button" class="btn btn-info" id ="4" data-ng-click="set_by_id(4)">Whack</button></td>
+                        <td><button type="button" class="btn btn-info" id ="5" data-ng-click="set_by_id(5)">Whack</button></td>
+                        <td><button type="button" class="btn btn-info" id ="6" data-ng-click="set_by_id(6)">Whack</button></td>
+                    </tr>
+                    <tr><td><button type="button" class="btn btn-info" id ="7" data-ng-click="set_by_id(7)">Whack</button></td>
+                        <td><button type="button" class="btn btn-info" id ="8" data-ng-click="set_by_id(8)">Whack</button></td>
+                        <td><button type="button" class="btn btn-info" id ="9" data-ng-click="set_by_id(9)">Whack</button></td>
+                    </tr>
+                </table>
+            </div>
+        <div class="form-group">
+            <b>Score :{{ total_cost }}</b> <br>
+            <b>Final Cost : {{ final_cost }}</b>
+        </div>
+        <div class="form-group">
+            <timer countdown="20" interval="1000" autostart=false interval="1000" finish-callback="finish()" ><div class="progress progress-striped active {{displayProgressActive}}"style="height: 30px;"><h5> Remaining time : {{countdown}} second{{secondsS}} ({{progressBar}}%)  </h5> <div class="bar" style="min-width: 2em;width: {{progressBar}}%;"></div> </div></timer>
+            <button ng-click="startTimer('poll-server')" class="btn btn-primary" >Start Game</button>
+            <button ng-click="stopTimer('poll-server')" class="btn btn-danger"  >Stop Game</button>
+            <button ng-click="top_three()" class="btn btn-info"  >Top 3 Scores</button>
+            <button ng-click="mail()" class="btn btn-primary"  >Send Email</button>
+        </div>
+        <div  data-ng-show="email_status">
+        <form  >
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email" class="form-control" data-ng-model="email" id="exampleInputEmail1" placeholder="Email">
+            </div>
+            <button type="button" data-ng-click="send_email(email)" class="btn btn-info">Submit</button>
+        </form>
+        </div>
+        <div class="row" ng-show="email_sent_status">
+            <div class="col-xs-12">
+                <div class="callout callout-info">
+                    <h4>Email Sent Successfully</h4>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" ng-show="table_result_status">
+            <div class="col-xs-12">
+                <div class="callout callout-info">
+                    <h4>No Records found Your the First Player Hurray !!</h4>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="table-responsive" data-ng-show="table_result">
+            <table class="table no-margin">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Score</th>
+                    <th>Date</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr data-ng-repeat="user in totals_table">
+                    <td><span class="label label-success"> {{ user.name}}</span></td>
+                    <td> {{ user.score}}</td>
+                    <td>{{ user.date | Modified_date}} </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </form>
+</div>
+
