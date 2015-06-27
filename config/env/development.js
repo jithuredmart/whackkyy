@@ -1,6 +1,5 @@
 'use strict';
 
-
 module.exports = {
   db: 'mongodb://jithu:GUPTA21!a@candidate.20.mongolayer.com:11143/ACM',
   debug: true,
